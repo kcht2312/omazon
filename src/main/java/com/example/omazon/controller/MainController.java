@@ -1,8 +1,10 @@
 package com.example.omazon.controller;
 
 import com.example.omazon.domain.Book;
+import com.example.omazon.domain.User;
 import com.example.omazon.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +30,11 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(@RequestParam String name, @RequestParam String author, Map<String, Object> model){
-        Book book = new Book(name,author);
+    public String add(
+            @AuthenticationPrincipal User user,
+            @RequestParam String name,
+            @RequestParam String writer, Map<String, Object> model){
+        Book book = new Book(name,writer,user);
 
         booksRepository.save(book);
 

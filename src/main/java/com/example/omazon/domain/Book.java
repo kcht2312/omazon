@@ -1,10 +1,7 @@
 package com.example.omazon.domain;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -14,16 +11,24 @@ public class Book {
 
     private String name;
 
-    private String author;
+    private String writer;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     public Book() {
     }
 
-    public Book(String name, String author) {
+    public Book(String name, String author, User user) {
         this.name = name;
-        this.author = author;
+        this.writer = author;
+        this.author = user;
     }
 
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "<none>";
+    }
 
 
     public void setName(String name){
@@ -34,11 +39,27 @@ public class Book {
         return name;
     }
 
-    public String getAuthor() {
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
