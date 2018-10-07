@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BooksRepository extends CrudRepository<Book, Integer> {
 
-    List<Book> findByAuthor(String author);
+    List<Book> findByWriter(String author);
 }
