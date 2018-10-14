@@ -2,6 +2,6 @@
 <@c.page>
 <div>
     Hello, user
-    <a href = "/main">main page</a>
 </div>
+<a href = "/main">main page</a>
 </@c.page>
