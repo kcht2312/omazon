@@ -20,7 +20,6 @@ import java.util.UUID;
 
 @Controller
 public class MainController {
-
     @Autowired
      private BooksRepository booksRepository;
 
@@ -75,6 +74,7 @@ public class MainController {
         booksRepository.save(book);
 
         Iterable<Book> books = booksRepository.findAll();
+
         model.put("books", books);
 
         return "main";
